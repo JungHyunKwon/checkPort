@@ -1,0 +1,11 @@
+{
+  "name": "checkport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "author": "JungHyunKwon",
+  "license": "ISC"
+}
