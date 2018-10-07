@@ -2,9 +2,9 @@
   "name": "checkport",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "checkPort.js",
   "scripts": {
-    "test": "node index"
+    "test": "node checkPort"
   },
   "author": "JungHyunKwon",
   "license": "ISC"
