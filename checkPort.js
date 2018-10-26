@@ -14,7 +14,7 @@ const net = require('net');
  * @return {boolean}
  */
 module.exports = (port, callback) => {
-	//함수일때
+	//함수일 때
 	if(typeof callback === 'function') {
 		let server = net.createServer();
 
