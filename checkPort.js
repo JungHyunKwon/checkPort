@@ -21,9 +21,7 @@ module.exports = (port, callback) => {
 		server.once('listening', () => {
 			server.once('close', () => {
 				callback(false);
-			});
-			
-			server.close();	
+			}).close();	
 		}).once('error', (error) => {
 			callback(true);
 		});
