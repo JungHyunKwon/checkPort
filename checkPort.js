@@ -9,12 +9,22 @@
 const net = require('net');
 
 /**
+ * @name 숫자 확인
+ * @since 2017-12-06
+ * @param {*} value
+ * @return {boolean}
+ */
+function _isNumeric(value) {
+	return typeof value === 'number' && !isNaN(value) && isFinite(value);
+}
+
+/**
  * @param {number} port
  * @param {function} callback {boolean}
  */
 module.exports = (port, callback) => {
 	//숫자일 때
-	if(typeof port === 'number' && !isNaN(port) && isFinite(port)) { 
+	if(_isNumeric(port)) { 
 		//함수일 때
 		if(typeof callback === 'function') {
 			let server = net.createServer();
