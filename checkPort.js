@@ -20,7 +20,7 @@ function isNumeric(value) {
 
 /**
  * @param {number} port
- * @param {function} callback {boolean}
+ * @param {function} callback {boolean, boolean}
  */
 module.exports = (port, callback) => {
 	let callbackIsFunction = typeof callback === 'function';
@@ -33,13 +33,13 @@ module.exports = (port, callback) => {
 			server.once('close', () => {
 				//함수일 때
 				if(callbackIsFunction) {
-					callback(false);
+					callback(false, false);
 				}
 			}).close();	
-		}).once('error', error => {
+		}).once('error', err => {
 			//함수일 때
 			if(callbackIsFunction) {
-				callback(true);
+				callback(false, true);
 			}
 		});
 
@@ -47,6 +47,6 @@ module.exports = (port, callback) => {
 	
 	//함수일 때
 	}else if(callbackIsFunction) {
-		callback();
+		callback(true, false);
 	}
 };
