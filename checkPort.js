@@ -14,7 +14,7 @@ const net = require('net');
  * @param {*} value
  * @return {boolean}
  */
-function _isNumeric(value) {
+function isNumeric(value) {
 	return typeof value === 'number' && !isNaN(value) && isFinite(value);
 }
 
@@ -23,25 +23,30 @@ function _isNumeric(value) {
  * @param {function} callback {boolean}
  */
 module.exports = (port, callback) => {
+	let callbackIsFunction = typeof callback === 'function';
+
 	//숫자일 때
-	if(_isNumeric(port)) { 
-		//함수일 때
-		if(typeof callback === 'function') {
-			let server = net.createServer();
+	if(isNumeric(port)) { 
+		let server = net.createServer();
 
-			server.once('listening', () => {
-				server.once('close', () => {
+		server.once('listening', () => {
+			server.once('close', () => {
+				//함수일 때
+				if(callbackIsFunction) {
 					callback(false);
-				}).close();	
-			}).once('error', (error) => {
+				}
+			}).close();	
+		}).once('error', error => {
+			//함수일 때
+			if(callbackIsFunction) {
 				callback(true);
-			});
+			}
+		});
 
-			server.listen(port);
-		}else{
-			console.error('callback : 함수가 아닙니다.');
-		}
-	}else{
-		console.error('port : 숫자가 아닙니다.');
+		server.listen(port);
+	
+	//함수일 때
+	}else if(callbackIsFunction) {
+		callback();
 	}
 };
