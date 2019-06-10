@@ -33,13 +33,13 @@ module.exports = (port, callback) => {
 			server.once('close', () => {
 				//함수일 때
 				if(callbackIsFunction) {
-					callback(false, false);
+					callback(undefined, false);
 				}
 			}).close();	
 		}).once('error', err => {
 			//함수일 때
 			if(callbackIsFunction) {
-				callback(false, true);
+				callback(undefined, true);
 			}
 		});
 
@@ -47,6 +47,6 @@ module.exports = (port, callback) => {
 	
 	//함수일 때
 	}else if(callbackIsFunction) {
-		callback(true, false);
+		callback(true);
 	}
 };
