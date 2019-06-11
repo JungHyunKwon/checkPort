@@ -23,30 +23,23 @@ function isNumeric(value) {
  * @param {function} callback {boolean, boolean}
  */
 module.exports = (port, callback) => {
-	let callbackIsFunction = typeof callback === 'function';
-
-	//숫자일 때
-	if(isNumeric(port)) { 
-		let server = net.createServer();
-
-		server.once('listening', () => {
-			server.once('close', () => {
-				//함수일 때
-				if(callbackIsFunction) {
-					callback(undefined, false);
-				}
-			}).close();	
-		}).once('error', err => {
-			//함수일 때
-			if(callbackIsFunction) {
-				callback(undefined, true);
-			}
-		});
-
-		server.listen(port);
-	
 	//함수일 때
-	}else if(callbackIsFunction) {
-		callback(true);
+	if(typeof callback === 'function') {
+		//숫자일 때
+		if(isNumeric(port)) { 
+			let server = net.createServer();
+
+			server.once('listening', () => {
+				server.once('close', () => {
+					callback(undefined, false);
+				}).close();	
+			}).once('error', err => {
+				callback(undefined, true);
+			});
+
+			server.listen(port);
+		}else{
+			callback(true);
+		}
 	}
 };
