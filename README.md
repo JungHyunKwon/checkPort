@@ -1,9 +1,9 @@
 # checkPort v1.0.0
-NodeJS로 만들었으며 포트가 사용 중인지 확인하는 모듈입니다.
+포트가 사용 중인지 확인하는 모듈입니다.
 
 ### 매개변수
 
 이름 | 형태 | 설명
 | :-- | :-- | :-- |
 port | number | 포트
-callback | function {boolean} | 결과를 받을 함수입니다.
+callback | function(err, result) | 콜백

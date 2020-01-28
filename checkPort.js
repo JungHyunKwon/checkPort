@@ -20,7 +20,7 @@ function isNumeric(value) {
 
 /**
  * @param {number} port
- * @param {function} callback {boolean, boolean}
+ * @param {function(boolean, boolean)} callback
  */
 module.exports = (port, callback) => {
 	//함수일 때
