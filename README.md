@@ -6,4 +6,4 @@
 이름 | 형태 | 설명
 | :-- | :-- | :-- |
 port | number | 포트
-callback | function(err, result) | 콜백
+callback | function(오류, 결과) | 콜백
